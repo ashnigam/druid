@@ -112,7 +112,7 @@ public class HyperLogLogCollectorTest
     final HyperLogLogCollector rolling = HyperLogLogCollector.makeLatestCollector();
     final HyperLogLogCollector simple = HyperLogLogCollector.makeLatestCollector();
 
-    MessageDigest md = MessageDigest.getInstance("SHA-1");
+    MessageDigest md = MessageDigest.getInstance("SHA-256");
     HyperLogLogCollector tmp = HyperLogLogCollector.makeLatestCollector();
 
     int count;
@@ -554,7 +554,7 @@ public class HyperLogLogCollectorTest
   public void testFoldingwithDifferentOffsets2() throws Exception
   {
     final Random random = new Random(0);
-    MessageDigest md = MessageDigest.getInstance("SHA-1");
+    MessageDigest md = MessageDigest.getInstance("SHA-256");
 
     for (int j = 0; j < 1; j++) {
       HyperLogLogCollector evenVals = HyperLogLogCollector.makeLatestCollector();
