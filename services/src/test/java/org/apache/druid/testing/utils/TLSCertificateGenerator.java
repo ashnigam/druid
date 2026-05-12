@@ -54,6 +54,9 @@ import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
 import java.util.Date;
 
+import com.example.pqc.config.CryptoConfig;
+import org.bouncycastle.pqc.jcajce.provider.BouncyCastlePQCProvider;
+
 /**
  * Utility class for generating TLS certificates and keystores for testing.
  * Generates self-signed CA certificates, server certificates with SANs,
@@ -151,9 +154,8 @@ public class TLSCertificateGenerator
 
   private static KeyPair generateKeyPair() throws Exception
   {
-    KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
-    keyGen.initialize(KEY_SIZE, new SecureRandom());
-    return keyGen.generateKeyPair();
+    KeyPairGenerator keyGen = KeyPairGenerator.getInstance("KYBER", "BC");
+    // Note: KYBER does not require initialize() call
   }
 
   private static X509v3CertificateBuilder createCertificateBuilder(X500Name subject, KeyPair keyPair)
