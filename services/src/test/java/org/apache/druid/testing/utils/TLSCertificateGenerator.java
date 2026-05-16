@@ -54,6 +54,8 @@ import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
 import java.util.Date;
 
+import org.bouncycastle.pqc.jcajce.provider.BouncyCastlePQCProvider;
+
 /**
  * Utility class for generating TLS certificates and keystores for testing.
  * Generates self-signed CA certificates, server certificates with SANs,
@@ -151,8 +153,8 @@ public class TLSCertificateGenerator
 
   private static KeyPair generateKeyPair() throws Exception
   {
-    KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
-    keyGen.initialize(KEY_SIZE, new SecureRandom());
+    KeyPairGenerator keyGen = KeyPairGenerator.getInstance("DILITHIUM3", "BC");
+    // Note: DILITHIUM3 does not require initialize() call
     return keyGen.generateKeyPair();
   }
 
